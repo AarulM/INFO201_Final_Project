@@ -1,0 +1,13 @@
+---
+title: "AI_Analysis"
+author: "Aarul"
+date: "2025-11-27"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+
+Job_Postings <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends.csv")
+```
+
