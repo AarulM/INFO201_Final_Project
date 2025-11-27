@@ -8,6 +8,8 @@ output: html_document
 ```{r}
 library(tidyverse)
 
-Job_Postings <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends.csv")
+job_postings <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends.csv")
+
+market_insights <- read.delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/ai_job_market_insights.csv")
 ```
 
