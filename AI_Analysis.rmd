@@ -8,8 +8,61 @@ output: html_document
 ```{r}
 library(tidyverse)
 
-job_postings <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends.csv")
+job_postings <- read_delim("./AI_Job_Posting_Trends.csv")
 
-market_insights <- read.delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/ai_job_market_insights.csv")
+market_insights <- read_delim("./ai_job_market_insights.csv")
 ```
+
+```{r}
+lowercase_clean <- function(df) {
+  names(df) <- tolower(names(df))
+  df
+}
+
+job_postings <- job_postings %>%
+  rename(location = company_location)
+
+market_insights <- lowercase_clean(market_insights)
+
+names(job_postings)
+names(market_insights)
+
+merged_data <- job_postings %>%
+  left_join(market_insights, by = "job_title", relationship = "many-to-many")
+
+merged_data <- merged_data %>%
+  select(-ends_with(".y"))
+
+merged_data <- merged_data %>%
+  mutate(
+    remote_friendly = ifelse(remote_category == "Fully Remote", "Yes", remote_friendly),
+    remote_friendly = ifelse(remote_category == "On-site", "No", remote_friendly),
+    remote_friendly = ifelse(remote_category == "Hybrid", "Hybrid", remote_friendly)
+      )
+
+merged_data
+```
+
+```
+columns needed for Q3
+job_postings %>%
+  select(industry, posting_date, job_title, salary_usd, company_size, company_location, required_skills)
+
+market_insights %>%
+  select(industry, ai_adoption_level, automation_risk, job_growth_projection, salary_usd, required_skills, job_title)
+```
+market_insights <- market_insights %>%
+  mutate(
+    company_size = ifelse(company_size == "Small", "S", company_size),
+    company_size = ifelse(company_size == "Medium", "M", company_size),
+    company_size = ifelse(company_size == "Large", "L", company_size)
+    ) %>%
+  mutate()
+
+market_insights
+job_postings
+
+
+
+
 
