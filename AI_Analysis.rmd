@@ -5,11 +5,43 @@ date: "2025-11-27"
 output: html_document
 ---
 
+## Collaborators: Aarul Motiani, Eshaan Garg, Wayne Zhao, Finn Caughie
+
+## Loading libraries and datasets
 ```{r}
 library(tidyverse)
+library(ggplot2)
+library(lubridate)
 
 job_postings <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends.csv")
 
-market_insights <- read.delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/ai_job_market_insights.csv")
+market_insights <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/ai_job_market_insights.csv")
 ```
+
+## Data exploration
+```{r}
+head(job_postings)
+names(job_postings)
+nrow(job_postings)
+ncol(job_postings)
+
+
+head(market_insights)
+names(market_insights)
+nrow(market_insights)
+ncol(market_insights)
+```
+## Dataset 1 (job_postings) cleaning
+```{r}
+job_postings_clean <- job_postings %>%
+  filter(!is.na(posting_date), !is.na(job_title)) %>% 
+mutate(date = mdy(posting_date), year = year(date), month = month(date)) ## The posting date is read as a character by R, so we need to convert it into a date object
+view(job_postings_clean)
+```
+
+## Dataset 2 (market_insights) cleaning
+```{r}
+
+```
+
 
