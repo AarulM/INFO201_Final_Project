@@ -85,14 +85,97 @@ merged_data <- job_demand %>%
 ## Finn, put whatever code u have written here
 
 
+#Loading and checking data
+```{r}
+insights <- read_delim("ai_job_market_insights.csv")
+head(insights)
+```
 
 
+```{r}
+trends <- read_delim("AI_Job_Posting_Trends.csv")
+head(trends)
+```
+
+#Cleaning the data 
+```{r}
+insights_clean <- insights %>%
+  distinct()
+
+trends_clean <- trends %>%
+  mutate(posting_date = as.Date(posting_date, format = "%m/%d/%y")) %>%
+  distinct()
+```
+
+#Updating data so I can use it for merging and graphing
+```{r}
+trends_per_month <- trends_clean %>%
+  mutate(year = format(posting_date, "%Y"), month = format(posting_date, "%m")) %>%
+  group_by(industry, year, month) %>%
+  summarize(postings_count = n()) #counts number of rows per group
+```
+
+```{r}
+industry_increase <- trends_per_month %>%
+  group_by(industry) %>%
+  summarize(first = first(postings_count), last = last(postings_count), increase = last - first) %>%
+  arrange(desc(increase))
+```
+
+```{r}
+head(trends_per_month)
+head(industry_increase)
+```
+
+#Merging the data
+```{r}
+merged <- merge(industry_increase, trends_per_month, by = "industry")
+head(merged)
+```
+
+```{r}
+merged <- merged %>%
+  arrange(desc(increase))
+
+```
+
+#This graph shows the job postings for the top 5 growing industries over the years
+```{r}
+yearly_increase <- merged %>%
+  group_by(industry, year) %>%
+  summarize(yearly_total = sum(postings_count)) %>%
+  arrange(industry, year)
+
+top5 <- merged %>%
+  distinct(industry, increase) %>%
+  arrange(desc(increase)) %>%
+  slice(1:5) %>%
+  pull(industry)
+
+yearly_increase_top5 <- yearly_increase %>%
+  filter(industry %in% top5)
+
+ggplot(yearly_increase_top5, aes(x = as.numeric(year), y = yearly_total, color = industry)) +
+  geom_line(linewidth = 1.1) +
+  labs(
+    title = "AI Job Postings for Top 5 Growing Industries Per Year",
+    x = "Year",
+    y = "Number of Postings"
+  )
+```
 
 
-
-
-
-
+#This graph uses merged data to show increase of AI job postings by industry per year 
+```{r}
+ggplot(merged, aes(x = industry, y = increase, fill = industry)) +
+  geom_col() +
+  coord_flip() +
+  labs(
+    title = "Increase in AI Job Postings by Industry",
+    x = "Industry",
+    y = "Increase in Job Postings"
+  )
+```
 
 
 ================================================================================
