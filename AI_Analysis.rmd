@@ -7,18 +7,20 @@ output: html_document
 
 ## Collaborators: Aarul Motiani, Eshaan Garg, Wayne Zhao, Finn Caughie
 
+================================================================================
+## AARUL'S RESEARCH QUESTION: How has demand for AI-related roles grown over the past 5 years?
+
 ## Loading libraries and datasets
 ```{r}
 library(tidyverse)
 library(ggplot2)
 library(lubridate)
 
+## Aarul's computer loaded datasets
 job_postings <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends.csv")
-
-market_insights <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/ai_job_market_insights.csv")
+salary_data <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/data_science_salaries.csv")
 ```
-
-## Data exploration
+## Data exploration for Aarul's datasets
 ```{r}
 head(job_postings)
 names(job_postings)
@@ -26,22 +28,141 @@ nrow(job_postings)
 ncol(job_postings)
 
 
-head(market_insights)
-names(market_insights)
-nrow(market_insights)
-ncol(market_insights)
+head(salary_data)
+names(salary_data)
+nrow(salary_data)
+ncol(salary_data)
+
 ```
-## Dataset 1 (job_postings) cleaning
+
+## Dataset 1 (job_postings) cleaning and organizing
 ```{r}
 job_postings_clean <- job_postings %>%
-  filter(!is.na(posting_date), !is.na(job_title)) %>% 
+filter(!is.na(posting_date), !is.na(job_title)) %>% 
+distinct() %>% 
 mutate(date = mdy(posting_date), year = year(date), month = month(date)) ## The posting date is read as a character by R, so we need to convert it into a date object
-view(job_postings_clean)
 ```
 
-## Dataset 2 (market_insights) cleaning
+## Dataset 2 (market_insights) cleaning and filtering data
+```{r}
+salary_data_clean <- salary_data %>%
+filter(work_year >= 2020, work_year <= 2023) %>%
+filter(!is.na(job_title), !is.na(salary_in_usd)) %>%
+distinct() %>% 
+rename(year = work_year)
+```
+
+## Grouping, variable declaration, and simple statistical calculations (mean, median) for dataset 1
+```{r}
+job_demand <- job_postings_clean %>%
+  group_by(year, job_category) %>%
+```
+
+## Grouping, variable declaration, and simple statistical calculations (mean, median) for dataset 2
+```{r}
+salary_trends <- salary_data_clean %>%
+  group_by(year, job_category) %>%
+```
+
+## Merging both the datasets
+```{r}
+merged_data <- job_demand %>%
+  left_join(salary_trends, by = c("year", "job_category"))
+```
+
+## Research question data analysis
 ```{r}
 
 ```
+
+## Visualizations
+```{r}
+
+```
+
+================================================================================
+## FINN'S RESEARCH QUESTION: Which industries have experienced the greatest increase in AI-related job openings?
+## Finn, put whatever code u have written here
+
+
+
+
+
+
+
+
+
+
+
+
+================================================================================
+## WAYNE'S RESEARCH QUESTION: How has AI-related hiring shifted in non-tech sectors?
+## Wayne, decide what code u need here and remove what you're not using
+
+```{r}
+market_insights <- read_delim("./ai_job_market_insights.csv")
+```
+
+```{r}
+lowercase_clean <- function(df) {
+  names(df) <- tolower(names(df))
+  df
+}
+
+job_postings <- job_postings %>%
+  rename(location = company_location)
+
+market_insights <- lowercase_clean(market_insights)
+
+names(job_postings)
+names(market_insights)
+
+merged_data <- job_postings %>%
+  left_join(market_insights, by = "job_title", relationship = "many-to-many")
+
+merged_data <- merged_data %>%
+  select(-ends_with(".y"))
+
+merged_data <- merged_data %>%
+  mutate(
+    remote_friendly = ifelse(remote_category == "Fully Remote", "Yes", remote_friendly),
+    remote_friendly = ifelse(remote_category == "On-site", "No", remote_friendly),
+    remote_friendly = ifelse(remote_category == "Hybrid", "Hybrid", remote_friendly)
+      )
+
+merged_data
+```
+
+## columns needed for Q3
+```{r}
+job_postings %>%
+  select(industry, posting_date, job_title, salary_usd, company_size, company_location, required_skills)
+
+market_insights %>%
+  select(industry, ai_adoption_level, automation_risk, job_growth_projection, salary_usd, required_skills, job_title)
+```
+
+```{r}
+market_insights <- market_insights %>%
+  mutate(
+    company_size = ifelse(company_size == "Small", "S", company_size),
+    company_size = ifelse(company_size == "Medium", "M", company_size),
+    company_size = ifelse(company_size == "Large", "L", company_size)
+    ) %>%
+  mutate()
+
+market_insights
+job_postings
+
+```
+
+
+================================================================================
+## ESHAAN'S RESEARCH QUESTION: What countries are leading in AI job growth relative to GDP or population?
+
+
+
+
+
 
 
