@@ -1,0 +1,131 @@
+---
+title: "FinalProject"
+author: "Eshaan Garg"
+date: "2025-12-02"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+aiJobs <- read_csv("data_science_salaries.csv")
+countries <- read_csv("countries of the world.csv")
+
+head(aiJobs)
+head(countries)
+```
+
+```{r}
+head(aiJobs)
+head(countries)
+```
+
+```{r}
+countriesClean <- countries %>%
+  mutate(
+    Country = str_trim(Country),
+    Population = as.numeric(gsub("[^0-9]", "", Population)),
+    GDP_per_capita = as.numeric(gsub("[^0-9]", "", `GDP ($ per capita)`)),
+    Total_GDP = GDP_per_capita * Population
+  ) %>%
+  select(Country, Region, Population, GDP_per_capita, Total_GDP) %>%
+  filter(!is.na(Population), !is.na(Total_GDP))
+
+```
+
+```{r}
+aiByCountry <- aiJobs %>%
+  count(employeeResidence, name = "jobCount") %>%
+  arrange(desc(jobCount))
+
+head(aiByCountry, 20)
+```
+
+```{r}
+aiByCountry %>%
+  filter(!employeeResidence %in% countriesClean$Country) %>%
+  select(employeeResidence, jobCount)
+```
+
+```{r}
+finalData <- aiByCountry %>%
+  inner_join(countriesClean, by = c("employeeResidence" = "Country")) %>%
+  mutate(
+    jobsPerMillion = (jobCount / Population) * 1e6,
+    jobsPerBillionGdp = (jobCount / (Total_GDP / 1e9))
+  ) %>%
+  rename(Country = employeeResidence)
+```
+
+```{r}
+nrow(finalData)
+head(finalData)
+```
+
+```{r}
+finalData %>%
+  slice_max(jobCount, n = 15) %>%
+  ggplot(aes(x = reorder(Country, jobCount), y = jobCount)) +
+  geom_col(fill = "#2E86AB") +
+  coord_flip() +
+  labs(
+    title = "Top 15 Countries by AI Job Postings (2019-2024)",
+    x = NULL,
+    y = "Number of Jobs"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+finalData %>%
+  slice_max(jobsPerMillion, n = 15) %>%
+  ggplot(aes(x = reorder(Country, jobsPerMillion), y = jobsPerMillion)) +
+  geom_col(fill = "#A23B72") +
+  coord_flip() +
+  labs(
+    title = "Top 15 Countries by AI Jobs per Million Population",
+    x = NULL,
+    y = "Jobs per Million People"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+finalData %>%
+  filter(jobsPerBillionGdp < Inf) %>%
+  slice_max(jobsPerBillionGdp, n = 15) %>%
+  ggplot(aes(x = reorder(Country, jobsPerBillionGdp), y = jobsPerBillionGdp)) +
+  geom_col(fill = "#F18F01") +
+  coord_flip() +
+  labs(
+    title = "Top 15 Countries by AI Jobs per Billion USD GDP",
+    x = NULL,
+    y = "Jobs per Billion USD"
+  ) +
+  theme_minimal()
+```
+
+```{r}
+finalData %>%
+  arrange(desc(jobCount)) %>%
+  select(Country, jobCount, jobsPerMillion, jobsPerBillionGdp) %>%
+  mutate(
+    jobsPerMillion = round(jobsPerMillion, 1),
+    jobsPerBillionGdp = round(jobsPerBillionGdp, 2)
+  ) %>%
+  head(15)
+```
+
+
+
+
+
+
+
+
+
