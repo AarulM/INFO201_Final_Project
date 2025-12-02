@@ -32,52 +32,106 @@ head(salary_data)
 names(salary_data)
 nrow(salary_data)
 ncol(salary_data)
-
 ```
 
 ## Dataset 1 (job_postings) cleaning and organizing
 ```{r}
 job_postings_clean <- job_postings %>%
-filter(!is.na(posting_date), !is.na(job_title)) %>% 
-distinct() %>% 
-mutate(date = mdy(posting_date), year = year(date), month = month(date)) ## The posting date is read as a character by R, so we need to convert it into a date object
+  mutate(posting_date = as.Date(posting_date, format = "%m/%d/%y")) %>%
+  filter(!is.na(posting_date)) %>%
+  distinct()
+head(job_postings_clean)
 ```
 
 ## Dataset 2 (market_insights) cleaning and filtering data
 ```{r}
 salary_data_clean <- salary_data %>%
-filter(work_year >= 2020, work_year <= 2023) %>%
-filter(!is.na(job_title), !is.na(salary_in_usd)) %>%
-distinct() %>% 
-rename(year = work_year)
+  filter(work_year >= 2020) %>%
+  filter(work_year <= 2023) %>%
+  filter(!is.na(salary_in_usd)) %>%
+  distinct()
+head(salary_data_clean)
+
 ```
 
-## Grouping, variable declaration, and simple statistical calculations (mean, median) for dataset 1
+## Grouping and summary statistics for job postings per year
 ```{r}
-job_demand <- job_postings_clean %>%
-  group_by(year, job_category) %>%
+jobs_per_year <- job_postings_clean %>%
+  mutate(year = format(posting_date, "%Y")) %>%
+  group_by(year) %>%
+  summarize(job_count = n())
+head(jobs_per_year)
 ```
 
-## Grouping, variable declaration, and simple statistical calculations (mean, median) for dataset 2
+## Grouping and adding columnn for average salary per year calculation
 ```{r}
-salary_trends <- salary_data_clean %>%
-  group_by(year, job_category) %>%
+salary_per_year <- salary_data_clean %>%
+  rename(year = work_year) %>%
+  mutate(year = as.character(year)) %>%
+  group_by(year) %>%
+  summarize(avg_salary = mean(salary_in_usd), median_salary = median(salary_in_usd))
+
+head(salary_per_year)
 ```
+
+## Creating numerical variables for data analysis (using lag function)
+```{r}
+salary_per_year <- salary_per_year %>%
+  mutate(salary_category = "AI/Data Science") %>%
+  arrange(year) %>%
+  mutate(prev_salary = lag(avg_salary), salary_growth_rate = (avg_salary - prev_salary) / prev_salary * 100)
+
+print(salary_per_year)
+```
+
 
 ## Merging both the datasets
 ```{r}
-merged_data <- job_demand %>%
-  left_join(salary_trends, by = c("year", "job_category"))
+merged <- jobs_per_year %>%
+  left_join(salary_per_year, by = "year")
+
+head(merged)
 ```
 
-## Research question data analysis
-```{r}
 
+## Research question data analysis to calculate salary growth
+```{r}
+first_year <- salary_per_year %>% filter(year == "2020")
+last_year <- salary_per_year %>% filter(year == "2023")
+total_salary_growth <- ((last_year$avg_salary - first_year$avg_salary) / first_year$avg_salary) * 100
+```
+
+## Company size grouping and evaluation
+```{r}
+company_summary <- job_postings_clean %>%
+  group_by(company_size) %>%
+  summarize(total_jobs = n())
+
+print(company_summary)
 ```
 
 ## Visualizations
 ```{r}
+salary_per_year %>% 
+ggplot(aes(x = as.numeric(year), y = avg_salary)) +
+  geom_line(size = 1.5, color = "darkblue") +
+  geom_point(size = 5, color = "red") +
+  labs(
+    title = "Average AI Job Salary Growth (2020-2023)",
+    x = "Year",
+    y = "Average Salary (USD)"
+  )
+```
 
+```{r}
+ggplot(company_summary, aes(x = company_size, y = total_jobs, group = 1)) +
+  geom_line(size = 1.5, color = "darkblue") +
+  geom_point(size = 5, color = "red") +
+  labs(
+    title = "AI Job Postings by Company Size (2020-2023)",
+    x = "Company Size",
+    y = "Number of Job Postings"
+  ) 
 ```
 
 ================================================================================
