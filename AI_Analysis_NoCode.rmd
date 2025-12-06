@@ -4,13 +4,15 @@ author: "Aarul"
 date: "2025-12-06"
 output: html_document
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
 
 # Final Project Report: AI's impact on the Job Market
 ## Collaborators: Aarul Motiani, Eshaan Garg, Wayne Zhao, Finn Caughie
 ================================================================================================================================================================
 ## AARUL'S RESEARCH QUESTION: How has demand for AI-related roles grown over the past 5 years?
 
-'''{r, echo=FALSE}
 ## Loading libraries and datasets
 ```{r}
 library(tidyverse)
@@ -21,19 +23,6 @@ library(lubridate)
 job_postings <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends.csv")
 salary_data <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/data_science_salaries.csv")
 ```
-## Data exploration for Aarul's datasets
-```{r}
-head(job_postings)
-names(job_postings)
-nrow(job_postings)
-ncol(job_postings)
-
-
-head(salary_data)
-names(salary_data)
-nrow(salary_data)
-ncol(salary_data)
-```
 
 ## Dataset 1 (job_postings) cleaning and organizing
 ```{r}
@@ -41,7 +30,6 @@ job_postings_clean <- job_postings %>%
   mutate(posting_date = as.Date(posting_date, format = "%m/%d/%y")) %>%
   filter(!is.na(posting_date)) %>%
   distinct()
-head(job_postings_clean)
 ```
 
 ## Dataset 2 (market_insights) cleaning and filtering data
@@ -51,8 +39,6 @@ salary_data_clean <- salary_data %>%
   filter(work_year <= 2023) %>%
   filter(!is.na(salary_in_usd)) %>%
   distinct()
-head(salary_data_clean)
-
 ```
 
 ## Grouping and summary statistics for job postings per year
@@ -61,7 +47,6 @@ jobs_per_year <- job_postings_clean %>%
   mutate(year = format(posting_date, "%Y")) %>%
   group_by(year) %>%
   summarize(job_count = n())
-head(jobs_per_year)
 ```
 
 ## Grouping and adding columnn for average salary per year calculation
@@ -72,7 +57,7 @@ salary_per_year <- salary_data_clean %>%
   group_by(year) %>%
   summarize(avg_salary = mean(salary_in_usd), median_salary = median(salary_in_usd))
 
-head(salary_per_year)
+
 ```
 
 ## Creating numerical variables for data analysis (using lag function)
@@ -82,7 +67,6 @@ salary_per_year <- salary_per_year %>%
   arrange(year) %>%
   mutate(prev_salary = lag(avg_salary), salary_growth_rate = (avg_salary - prev_salary) / prev_salary * 100)
 
-print(salary_per_year)
 ```
 
 
@@ -90,8 +74,6 @@ print(salary_per_year)
 ```{r}
 merged <- jobs_per_year %>%
   left_join(salary_per_year, by = "year")
-
-head(merged)
 ```
 
 
@@ -107,8 +89,6 @@ total_salary_growth <- ((last_year$avg_salary - first_year$avg_salary) / first_y
 company_summary <- job_postings_clean %>%
   group_by(company_size) %>%
   summarize(total_jobs = n())
-
-print(company_summary)
 ```
 
 ## Visualizations
@@ -134,13 +114,11 @@ ggplot(company_summary, aes(x = company_size, y = total_jobs, group = 1)) +
 # Loading and checking data
 ```{r}
 insights <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/ai_job_market_insights.csv")
-head(insights)
 ```
 
 
 ```{r}
 trends <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends 2.csv")
-head(trends)
 ```
 
 #Cleaning the data 
@@ -168,21 +146,15 @@ industry_increase <- trends_per_month %>%
   arrange(desc(increase))
 ```
 
-```{r}
-head(trends_per_month)
-head(industry_increase)
-```
 
 #Merging the data
 ```{r}
 merged <- merge(industry_increase, trends_per_month, by = "industry")
-head(merged)
 ```
 
 ```{r}
 merged <- merged %>%
   arrange(desc(increase))
-
 ```
 
 #This graph shows the job postings for the top 5 growing industries over the years
@@ -272,7 +244,6 @@ growth_count <- insights %>%
 top_jobs <- growth_count %>%
   filter(job_growth_projection == "Growth") %>%
   arrange(desc(n)) %>%
-  head(10)
 ```
 
 ## Industries with the most job postings
@@ -291,51 +262,6 @@ insights %>%
 ```
 
 ## Visualization of AI Job Roles with the most "Growth" labels by percentage
-
-```{r}
-growth_percent <- insights %>%
-  filter(!is.na(job_growth_projection)) %>%
-  count(job_title, job_growth_projection) %>%
-  group_by(job_title) %>%
-    mutate(total = sum(n)) %>%
-    mutate(percentage = (n / total) * 100) %>%
-  filter(job_growth_projection == "Growth", total >= 2) %>%
-  arrange(desc(percentage)) %>%
-  head(10)
-
-ggplot(growth_percent, aes(x = reorder(job_title, percentage), y = percentage)) +
-  geom_col(fill = "#3498db") +
-  coord_flip() +
-  ylim(0, 60) +
-  labs(
-    title = "Top 10 AI Job Roles with Highest Growth Rate",
-    x = "Job Role",
-    y = "% of Job Postings Labeled Growth"
-  )
-
-```
-## Visualization of Job Growth Trajectory VS AI Adoption Level
-```{r}
-growth_by_adoption <- insights %>%
-  filter(!is.na(job_growth_projection), !is.na(ai_adoption_level)) %>%
-    count(job_title, ai_adoption_level, job_growth_projection) %>%
-    filter(job_growth_projection == "Growth") %>%
-    arrange(ai_adoption_level, desc(n)) %>%
-    group_by(ai_adoption_level) %>%
-    slice_max(n, n = 5) %>%
-    ungroup()
- 
-  ggplot(growth_by_adoption, aes(x = ai_adoption_level, y = n, color = job_title, group = job_title)) +
-    geom_line() +
-    geom_point(size = 2) +
-    scale_x_discrete(limits = c("Low", "Medium", "High")) +
-    labs(
-      title = "Job Growth Trajectory by AI Adoption Level",
-      x = "AI Adoption Level",
-      y = "Number of Growth Postings",
-      color = "Job Role"
-    )
-```
 ================================================================================================================================================================
 ## ESHAAN'S RESEARCH QUESTION: What countries are leading in AI job growth relative to GDP or population?
 
@@ -351,9 +277,6 @@ library(ggplot2)
 ```{r}
 aiJobs <- read_csv("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/data_science_salaries.csv")
 countries <- read_csv("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/countries of the world - Eshaan.csv")
-
-head(aiJobs)
-head(countries)
 ```
 
 ## Clean countries dataset
@@ -457,7 +380,6 @@ finalData %>%
   ) %>%
   head(15)
 ```
-
 ================================================================================================================================================================
 
 # 1. Abstract
