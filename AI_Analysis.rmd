@@ -4,10 +4,85 @@ author: "Aarul"
 date: "2025-11-27"
 output: html_document
 ---
-
+# Final Project Report: AI's impact on the Job Market
 ## Collaborators: Aarul Motiani, Eshaan Garg, Wayne Zhao, Finn Caughie
 
-================================================================================
+# 1. Abstract
+--------------------------------------------------------------------------------
+### In this paper we analyze the growth in AI-related positions from 2020 through 2023, using both job postings and salary data from Kaggle. The purpose of our paper is to answer four research questions; (1) How has demand for AI-related roles grown over the past 5 years? (2) Which industries have experienced the greatest increase in AI-related job openings? (3) How has AI-related hiring shifted in non-tech sectors? (4) What countries are leading in AI job growth relative to GDP or population? We find that there was a 47.5% increase in the average salary of people working in AI jobs over this period, from an average of $102,251 in 2020 to $150,791 in 2023. This indicates that employers continue to be highly interested in acquiring AI talent. Our results also indicate a fairly even distribution of hiring activity among all firm size categories as 16,742 AI related job postings were placed by larger firms versus 16,571 by smaller firms. In addition, our analysis of hiring by sector indicates that each sector has had different rates of adopting AI technology and we also identify the presence of concentrations in markets for AI talent.
+
+# 2. Introduction
+--------------------------------------------------------------------------------
+## Background Context:
+
+### AI has evolved dramatically from a laboratory experiment to a major source of business innovation and growth. In the last five years, the rate of AI adoption has grown significantly across many industries, and the rate of change is transforming workforce skills and needs. The increasing investment in AI capabilities at the company level has created unprecedented demand for individuals with the ability to develop and deploy AI systems. The change is occurring across virtually all sectors including, healthcare, financial services, manufacturing and retail. All of these sectors are now using AI within their operations.
+
+### The AI job market represents a key point of convergence between technological innovation and economic opportunity. Organizations competing for the most capable professionals to develop, build, and use machine learning, natural language processing, and computer vision systems are increasingly aggressive in their pursuit of such talent. This competition is evident through increases in salary levels, greater numbers of job postings, new specialization opportunities and changing expectations regarding required skills. Research on previous studies documenting the broad increase in number of technology jobs and the establishment of data science as a recognized profession, however, has not examined in detail the specifics of AI related professional roles, including trends in compensation, geographic distribution, industry adoption, and organizational preference.
+
+### Understanding these changes has significant implications for several types of stakeholders. Job seekers will benefit from having access to data that informs career decisions and investments in skill development. Educational institutions will be able to create curricula aligned with actual market demand. Policymakers will have access to information needed to inform workforce development initiatives. Finally, business leaders will have benchmarking tools available to support their strategic efforts to acquire talented employees. Our analysis will provide this type of information by analyzing a comprehensive set of data spanning the period from 2020 to 2023; a time during which AI was advancing at a very high rate, and was being adopted by organizations at an increasingly rapid pace.
+
+## Research Objectives: 
+
+## Research Question 1 (Aarul Motiani): How has demand for AI-related roles grown over the past 5 years?
+### Demand can be measured using two main ways; job postings and salaries. Since we have analyzed 50,000 job postings and salary data, we can find out if an increase in employers' ability to pay employees more money is evidence that there is actually more demand in the labor market for AI skills. Both of these elements address the amount of and the quality of the demand.
+
+## Research Question 2 (Finn Caughie): Which industries have experienced the greatest increase in AI-related job openings?
+### Job postings data from several months will help us to see the trend of which industries are developing AI related hiring practices. We will also determine if AI growth is limited to tech companies or is more widely spread throughout various other industries. This research will also help us to understand the type of industries that are making the heaviest investments into their AI capabilities.
+
+## Research Question 3 (Wayne Zhao): How has AI-related hiring shifted in non-tech sectors?
+### The purpose of this section is to look at industries that were traditionally outside the scope of the technology sector and better to understand the level of AI adoption within those industries. This section will address whether AI-related positions are still specialized or have been adopted as common across all areas of the business. The sections on adoption rates, the likelihood of job automation and work-at-home arrangements will be used to study how non-tech industries have developed unique approaches to acquiring AI talent.
+
+## Research Question 4 (Eshaan Garg): What countries are leading in AI job growth relative to GDP or population?
+### This section will be used to compare the number of AI-related jobs that exist in each country in relation to its population size or the size of the economy. This comparison will allow us to differentiate between large economies that may have an enormous number of total jobs available, versus small countries that have a significantly larger proportion of the workforce with AI related skills. These comparisons will help us to understand the global distribution of AI expertise.
+
+## Why this work matters: 
+
+### Job Seekers/Career Planners: Understanding where wages are increasing, where there is an abundance of job openings, and what areas have growing populations, allows Career Planning and Skill Development to be done strategically. The documented 47.5% salary increase shows how much money one can make when investing in AI knowledge; Additionally, industry specific findings will allow individuals to find which industry has the most available jobs.
+
+### Educational Institutions: Educational Institutions (Universities/Training Programs) will be able to design their curriculum so it matches the job requirements of companies in the marketplace. It also will give Educators a way to tell their students about the job opportunities that exist today, as opposed to what gets published in the press. The even distribution of job opportunities across all company sizes implies that graduates will have the skills to enter into many different types of organizational settings.
+
+### Policymakers/Economic Development Officials: Policymaker's/Economic Development Official's ability to understand how the talent pool of AI is geographically distributed, will enable them to create workforce development programs and develop economic policies that promote the creation of AI talent. When analyzing the top performing countries in AI Job Growth as compared to their Gross Domestic Product, Policymakers will be able to see successful models of AI Talent Development.
+
+### Business Leaders/HR Professionals: Business leaders who are recruiting AI talent will require information based upon data regarding their compensation package, competitors' hiring practices, and availability of qualified candidates. Data related to the distribution of job openings by Company Size and Industry Trends will assist businesses to position themselves in terms of their recruiting strategy. In addition, the data regarding salary growth will provide businesses with concrete data to compare against other companies in their respective industry.
+
+### Researchers/Economists: The systematic nature of our research will contribute to the academic study of the impact of technology on the labor markets. We provide empirical evidence for the theories regarding skill-biased technological change and the future of work.
+
+### Overall, the significance of this Report is that it provides a comprehensive, data driven perspective of a rapidly changing Labor Market Segment. Unlike anecdotal reports, we analyzed over 100,000 job postings and salary records to determine consistent patterns. The multi-faceted analysis of the job market (temporal, industrial, organizational, and geographical) provides a level of detail that goes beyond the typical headline statistic. As AI represents a fundamental change in how businesses operate and compete, the AI Talent Market is a leading indicator of overall Economic Change.
+
+# 3. Data Source
+
+--------------------------------------------------------------------------------
+
+# 4. Data
+
+--------------------------------------------------------------------------------
+
+# 5. Method
+
+--------------------------------------------------------------------------------
+
+# 6. Results
+
+--------------------------------------------------------------------------------
+
+# 7. Discussion
+--------------------------------------------------------------------------------
+### Our analysis reveals that AI's impact on employment is significant but uneven across different measures. The 47.5% salary increase from 2020-2023 shows strong demand for AI skills, while the similar hiring rates across company sizes (only 1% variation) indicate AI adoption has spread beyond just large tech companies. Industries like healthcare, finance, and real estate are leading AI job growth because they work with large amounts of data, where AI provides clear value. However, areas like automotive and transportation show flat growth, suggesting AI adoption is concentrated rather than universal. 
+
+### The growth of both technical roles (Software Engineers, AI Researchers) and managerial positions (Operations Managers) indicates that successful AI implementation requires more than coding skills alone. Companies need people who can both build AI systems and manage their deployment. Geographic patterns show an interesting split: the United States dominates in total jobs (5,305 positions), but smaller countries like Estonia and American Samoa rank higher when adjusted for population or GDP. This suggests different countries are taking different approaches to AI development. 
+
+### Our data has several significant limitations. First, we only capture jobs posted publicly on job boards, missing positions filled through networking or internal hiring. Second, only 15 of 20 countries could be matched between datasets due to naming differences and missing data. Third, our data heavily represents English-speaking countries and may miss significant AI activity in China, Russia, and other markets. Fourth, what counts as an AI role varies between companies, making exact comparisons difficult. Finally, our time period (2019-2024) captures recent growth but cannot show whether this represents a permanent shift or a temporary surge. 
+
+### These limitations mean we can be confident about broad trends, such as overall salary growth and which major countries lead in AI employment, but less sure about specific numbers or rankings for smaller countries. Future research should track these patterns over longer time periods, analyze which specific AI skills are most valuable, and incorporate data from non- English job markets to get a truly global picture.
+
+# 8. Summary 
+--------------------------------------------------------------------------------
+
+### This analysis examined AI's impact on employment from 2019-2024 using job postings and economic data. We found four main patterns: AI salaries increased 47.5% while demand grew across all company sizes; healthcare, finance, and real estate led industry growth; both technical and managerial AI roles expanded rapidly; and geographic leadership varies by metric, with large economies dominating total jobs but smaller nations showing higher density per capita/GDP. 
+
+### These findings matter for different groups. Workers should develop AI skills to improve career prospects, but should also focus on continuous learning as the field evolves quickly. Companies face intense competition for AI talent and must offer substantial compensation. Policymakers should note that even smaller countries can build AI capacity through focused investment, though large markets maintain scale advantages. AI represents a major workforce transformation across multiple industries. Unlike past technological changes limited to specific sectors, AI's broad applicability creates both disruption and opportunity across the economy. Our analysis captures this shift as AI moves from experimental technology to an essential business tool. The patterns we identify are not fixed - different industries and countries are adopting AI at different speeds, meaning stakeholders can influence how this transformation unfolds in their contexts. Understanding current trends provides a foundation for workers making career decisions, companies planning hiring strategies, and policymakers designing programs to support workforce adaptation.
+
+================================================================================================================================================================
 ## AARUL'S RESEARCH QUESTION: How has demand for AI-related roles grown over the past 5 years?
 
 ## Loading libraries and datasets
@@ -114,40 +189,30 @@ print(company_summary)
 ```{r}
 salary_per_year %>% 
 ggplot(aes(x = as.numeric(year), y = avg_salary)) +
-  geom_line(size = 1.5, color = "darkblue") +
+  geom_line(size = 1.5, color = "black") +
   geom_point(size = 5, color = "red") +
-  labs(
-    title = "Average AI Job Salary Growth (2020-2023)",
-    x = "Year",
-    y = "Average Salary (USD)"
-  )
+  labs(title = "Average AI Job Salary Growth (2020-2023)", x = "Year", y = "Average Salary (USD)")
 ```
 
 ```{r}
 ggplot(company_summary, aes(x = company_size, y = total_jobs, group = 1)) +
-  geom_line(size = 1.5, color = "darkblue") +
+  geom_line(size = 1.5, color = "black") +
   geom_point(size = 5, color = "red") +
-  labs(
-    title = "AI Job Postings by Company Size (2020-2023)",
-    x = "Company Size",
-    y = "Number of Job Postings"
-  ) 
+  labs(title = "AI Job Postings by Company Size (2020-2023)", x = "Company Size", y = "Number of Job Postings") 
 ```
 
-================================================================================
+================================================================================================================================================================
 ## FINN'S RESEARCH QUESTION: Which industries have experienced the greatest increase in AI-related job openings?
-## Finn, put whatever code u have written here
-
 
 #Loading and checking data
 ```{r}
-insights <- read_delim("ai_job_market_insights.csv")
+insights <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/ai_job_market_insights.csv")
 head(insights)
 ```
 
 
 ```{r}
-trends <- read_delim("AI_Job_Posting_Trends.csv")
+trends <- read_delim("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/AI_Job_Posting_Trends 2.csv")
 head(trends)
 ```
 
@@ -231,15 +296,10 @@ ggplot(merged, aes(x = industry, y = increase, fill = industry)) +
   )
 ```
 
-
-================================================================================
+================================================================================================================================================================
 ## WAYNE'S RESEARCH QUESTION: How has AI-related hiring shifted in non-tech sectors?
-## Wayne, decide what code u need here and remove what you're not using
 
-```{r}
-market_insights <- read_delim("./ai_job_market_insights.csv")
-```
-
+## Cleaning and Merging
 ```{r}
 lowercase_clean <- function(df) {
   names(df) <- tolower(names(df))
@@ -249,13 +309,13 @@ lowercase_clean <- function(df) {
 job_postings <- job_postings %>%
   rename(location = company_location)
 
-market_insights <- lowercase_clean(market_insights)
+insights <- lowercase_clean(insights)
 
 names(job_postings)
-names(market_insights)
+names(insights)
 
 merged_data <- job_postings %>%
-  left_join(market_insights, by = "job_title", relationship = "many-to-many")
+  left_join(insights, by = "job_title", relationship = "many-to-many")
 
 merged_data <- merged_data %>%
   select(-ends_with(".y"))
@@ -270,32 +330,215 @@ merged_data <- merged_data %>%
 merged_data
 ```
 
-## columns needed for Q3
-```{r}
-job_postings %>%
-  select(industry, posting_date, job_title, salary_usd, company_size, company_location, required_skills)
 
-market_insights %>%
-  select(industry, ai_adoption_level, automation_risk, job_growth_projection, salary_usd, required_skills, job_title)
+## Sort data by the amount of times a job got labeled "Growth" or "Decline"
+```{r}
+growth_count <- insights %>%
+  filter(!is.na(job_growth_projection)) %>%
+  count(job_title, job_growth_projection) %>%
+  group_by(job_title) %>%
+  mutate(total = sum(n))
 ```
 
+## Top jobs with the most amount of "Growth" labels
 ```{r}
-market_insights <- market_insights %>%
-  mutate(
-    company_size = ifelse(company_size == "Small", "S", company_size),
-    company_size = ifelse(company_size == "Medium", "M", company_size),
-    company_size = ifelse(company_size == "Large", "L", company_size)
-    ) %>%
-  mutate()
-
-market_insights
-job_postings
-
+top_jobs <- growth_count %>%
+  filter(job_growth_projection == "Growth") %>%
+  arrange(desc(n)) %>%
+  head(10)
 ```
 
+## Industries with the most job postings
 
-================================================================================
+```{r}
+insights %>%
+  count(industry) %>%
+  ggplot(aes(x = reorder(industry, n), y = n)) +
+  geom_col(fill = "coral") +
+  coord_flip() +
+  labs(
+    title = "Job Postings by Industry",
+    x = "Industry",
+    y = "Number of Postings"
+  )
+```
+
+## Visualization of AI Job Roles with the most "Growth" labels by percentage
+
+```{r}
+growth_percent <- insights %>%
+  filter(!is.na(job_growth_projection)) %>%
+  count(job_title, job_growth_projection) %>%
+  group_by(job_title) %>%
+    mutate(total = sum(n)) %>%
+    mutate(percentage = (n / total) * 100) %>%
+  filter(job_growth_projection == "Growth", total >= 2) %>%
+  arrange(desc(percentage)) %>%
+  head(10)
+
+ggplot(growth_percent, aes(x = reorder(job_title, percentage), y = percentage)) +
+  geom_col(fill = "#3498db") +
+  coord_flip() +
+  ylim(0, 60) +
+  labs(
+    title = "Top 10 AI Job Roles with Highest Growth Rate",
+    x = "Job Role",
+    y = "% of Job Postings Labeled Growth"
+  )
+
+```
+## Visualization of Job Growth Trajectory VS AI Adoption Level
+```{r}
+growth_by_adoption <- insights %>%
+  filter(!is.na(job_growth_projection), !is.na(ai_adoption_level)) %>%
+    count(job_title, ai_adoption_level, job_growth_projection) %>%
+    filter(job_growth_projection == "Growth") %>%
+    arrange(ai_adoption_level, desc(n)) %>%
+    group_by(ai_adoption_level) %>%
+    slice_max(n, n = 5) %>%
+    ungroup()
+ 
+  ggplot(growth_by_adoption, aes(x = ai_adoption_level, y = n, color = job_title, group = job_title)) +
+    geom_line() +
+    geom_point(size = 2) +
+    scale_x_discrete(limits = c("Low", "Medium", "High")) +
+    labs(
+      title = "Job Growth Trajectory by AI Adoption Level",
+      x = "AI Adoption Level",
+      y = "Number of Growth Postings",
+      color = "Job Role"
+    )
+```
+================================================================================================================================================================
 ## ESHAAN'S RESEARCH QUESTION: What countries are leading in AI job growth relative to GDP or population?
+
+## Load libraries
+```{r}
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(ggplot2)
+```
+
+## Load datasets for Question 4
+```{r}
+aiJobs <- read_csv("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/data_science_salaries.csv")
+countries <- read_csv("/Users/Aarul/UW/INFO 201/Final Project/INFO201_Final_Project/countries of the world - Eshaan.csv")
+
+head(aiJobs)
+head(countries)
+```
+
+## Clean countries dataset
+```{r}
+countriesClean <- countries %>%
+  mutate(
+    Country = str_trim(Country),
+    Population = as.numeric(gsub("[^0-9]", "", Population)),
+    GDP_per_capita = as.numeric(gsub("[^0-9]", "", `GDP ($ per capita)`)),
+    Total_GDP = GDP_per_capita * Population
+  ) %>%
+  select(Country, Region, Population, GDP_per_capita, Total_GDP) %>%
+  filter(!is.na(Population), !is.na(Total_GDP))
+
+```
+
+## Count AI jobs by country
+```{r}
+aiByCountry <- aiJobs %>%
+  count(employee_residence, name = "jobCount") %>%
+  arrange(desc(jobCount))
+
+head(aiByCountry, 20)
+```
+
+## Check which countries won't match
+```{r}
+aiByCountry %>%
+  filter(!employee_residence %in% countriesClean$Country) %>%
+  select(employee_residence, jobCount)
+```
+
+## Merge datasets and calculate metrics
+```{r}
+finalData <- aiByCountry %>%
+  inner_join(countriesClean, by = c("employee_residence" = "Country")) %>%
+  mutate(
+    jobsPerMillion = (jobCount / Population) * 1e6,
+    jobsPerBillionGdp = (jobCount / (Total_GDP / 1e9))
+  ) %>%
+  rename(Country = employee_residence)
+
+nrow(finalData)
+head(finalData)
+```
+
+## Visualization 1: Top countries by absolute job count
+```{r}
+finalData %>%
+  slice_max(jobCount, n = 15) %>%
+  ggplot(aes(x = reorder(Country, jobCount), y = jobCount)) +
+  geom_col(fill = "#2E86AB") +
+  coord_flip() +
+  labs(
+    title = "Top 15 Countries by AI Job Postings (2019-2024)",
+    x = NULL,
+    y = "Number of Jobs"
+  ) +
+  theme_minimal()
+```
+
+## Visualization 2: Jobs per million population
+```{r}
+finalData %>%
+  slice_max(jobsPerMillion, n = 15) %>%
+  ggplot(aes(x = reorder(Country, jobsPerMillion), y = jobsPerMillion)) +
+  geom_col(fill = "#A23B72") +
+  coord_flip() +
+  labs(
+    title = "Top 15 Countries by AI Jobs per Million Population",
+    x = NULL,
+    y = "Jobs per Million People"
+  ) +
+  theme_minimal()
+```
+
+## Visualization 3: Jobs per billion GDP
+```{r}
+finalData %>%
+  filter(jobsPerBillionGdp < Inf) %>%
+  slice_max(jobsPerBillionGdp, n = 15) %>%
+  ggplot(aes(x = reorder(Country, jobsPerBillionGdp), y = jobsPerBillionGdp)) +
+  geom_col(fill = "#F18F01") +
+  coord_flip() +
+  labs(
+    title = "Top 15 Countries by AI Jobs per Billion USD GDP",
+    x = NULL,
+    y = "Jobs per Billion USD"
+  ) +
+  theme_minimal()
+```
+
+## Summary statistics table
+```{r}
+finalData %>%
+  arrange(desc(jobCount)) %>%
+  select(Country, jobCount, jobsPerMillion, jobsPerBillionGdp) %>%
+  mutate(
+    jobsPerMillion = round(jobsPerMillion, 1),
+    jobsPerBillionGdp = round(jobsPerBillionGdp, 2)
+  ) %>%
+  head(15)
+```
+
+
+
+
+
+
+
+
+
 
 
 
