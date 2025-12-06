@@ -1,16 +1,16 @@
 ---
-title: "AI_Analysis"
+title: "AI_Analysis_NoCode"
 author: "Aarul"
-date: "2025-11-27"
+date: "2025-12-06"
 output: html_document
 ---
+
 # Final Project Report: AI's impact on the Job Market
 ## Collaborators: Aarul Motiani, Eshaan Garg, Wayne Zhao, Finn Caughie
-
-
 ================================================================================================================================================================
 ## AARUL'S RESEARCH QUESTION: How has demand for AI-related roles grown over the past 5 years?
 
+'''{r, echo=FALSE}
 ## Loading libraries and datasets
 ```{r}
 library(tidyverse)
